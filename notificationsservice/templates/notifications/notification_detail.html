@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ object.title }}{% endblock title %}
+
+{% block content %}
+  <table class="table table-bordered table-responsive">
+    <tr><td>ID:</td><td>{{ object.pk }}</td></tr>
+    <tr><td>Title:</td><td>{{ object.title }}</td></tr>
+    <tr><td>Description:</td><td>{{ object.description|safe }}</td></tr>
+    <tr><td>Author:</td><td><a href="{% url 'users:detail' username=object.author.username %}">{{ object.author }}</a></td></tr>
+    <tr><td>Users:</td><td>{{ object.users.all|join:", " }}</td></tr>
+    <tr><td>Created At:</td><td>{{ object.created_at }}</td></tr>
+    <tr><td>Planned At:</td><td>{{ object.planned_at }}</td></tr>
+    <tr><td>Is completed:</td><td>{{ object.is_completed }}</td></tr>
+  </table>
+{% endblock %}

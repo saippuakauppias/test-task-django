@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Notifications{% endblock title %}
+
+{% block content %}
+  <ul>
+  {% for object in object_list %}
+    <li>
+      <a href="{% url 'notifications:detail' id=object.pk %}">[{{ object.pk }}] {{ object.title }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+
+{% endblock %}
