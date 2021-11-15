@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from notificationsservice.users.models import User
@@ -16,3 +17,6 @@ class Notification(models.Model):
     created_at = models.DateTimeField(_("Created at"), auto_now_add=True)
     planned_at = models.DateTimeField(_("Planned at"))
     is_completed = models.BooleanField(_("Is completed"), default=False)
+
+    def get_absolute_url(self):
+        return reverse("notifications:detail", kwargs={"id": self.pk})

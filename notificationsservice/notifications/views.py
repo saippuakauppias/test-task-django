@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, UpdateView
 
+from notificationsservice.notifications.forms import NotificationForm
 from notificationsservice.notifications.models import Notification
 
 
@@ -24,3 +25,11 @@ class NotificationOwnListView(LoginRequiredMixin, ListView):
 class NotificationInvitedListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Notification.objects.filter(users=self.request.user.id).all()
+
+
+class NotificationUpdateView(LoginRequiredMixin, UpdateView):
+
+    form_class = NotificationForm
+
+    def get_object(self):
+        return Notification.objects.get(pk=self.kwargs["pk"])
