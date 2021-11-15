@@ -5,7 +5,10 @@
   <ul>
   {% for object in object_list %}
     <li>
-      <a href="{% url 'notifications:detail' id=object.pk %}">[{{ object.pk }}] {{ object.title }}</a>
+      <a href="{% url 'notifications:detail' id=object.pk %}">[{{ object.pk }}] {{ object.title }}</a> &mdash;
+      {% if user.is_authenticated %}
+        <a href="#?" class="api__notifications__delete" data-id="{{ object.pk }}">Delete (API, ajax)</a>
+      {% endif %}
     </li>
   {% endfor %}
   </ul>
