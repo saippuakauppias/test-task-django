@@ -54,6 +54,11 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'notifications:invited' %}">Notifications (invited)</a>
               </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'notifications:add' %}">Add Notification</a>
+              </li>
+            {% endif %}
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
               </li>
