@@ -22,3 +22,14 @@ class TestNotificationViewSet:
         notification.save()
 
         assert notification in view.get_queryset()
+
+    def test_get_queryset__with_another_author(
+        self, user: User, notification: Notification, rf: RequestFactory
+    ):
+        view = NotificationViewSet()
+        request = rf.get("/api-url/")
+        request.user = user
+
+        view.request = request
+
+        assert notification not in view.get_queryset()
