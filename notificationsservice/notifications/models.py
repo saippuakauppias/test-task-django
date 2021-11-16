@@ -1,3 +1,6 @@
+from datetime import datetime
+
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
@@ -15,7 +18,9 @@ class Notification(models.Model):
     )
     users = models.ManyToManyField(User)
     created_at = models.DateTimeField(_("Created at"), auto_now_add=True)
-    planned_at = models.DateTimeField(_("Planned at"))
+    planned_at = models.DateTimeField(
+        _("Planned at"), validators=[MinValueValidator(limit_value=datetime.now)]
+    )
     is_completed = models.BooleanField(_("Is completed"), default=False)
 
     def get_absolute_url(self):
