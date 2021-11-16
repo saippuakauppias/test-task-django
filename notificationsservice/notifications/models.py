@@ -1,8 +1,7 @@
-from datetime import datetime
-
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
 from notificationsservice.users.models import User
@@ -19,7 +18,7 @@ class Notification(models.Model):
     users = models.ManyToManyField(User)
     created_at = models.DateTimeField(_("Created at"), auto_now_add=True)
     planned_at = models.DateTimeField(
-        _("Planned at"), validators=[MinValueValidator(limit_value=datetime.now)]
+        _("Planned at"), validators=[MinValueValidator(limit_value=timezone.now)]
     )
     is_completed = models.BooleanField(_("Is completed"), default=False)
 
