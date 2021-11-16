@@ -14,8 +14,7 @@
   </table>
   {% if user.is_authenticated and object.author == user %}
     <div class="text-center">
-      ❌ <a href="#?" class="api__notifications__delete" data-id="{{ object.pk }}">Delete (API, ajax)</a>
-      | ✏️ <a href="{% url 'notifications:edit' pk=object.pk %}">Edit</a>
+      ✏️ <a href="{% url 'notifications:edit' pk=object.pk %}">Edit</a>
     </div>
   {% endif %}
 {% endblock %}
