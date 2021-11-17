@@ -22,3 +22,19 @@
 - минимальный набор тестов
 
 фронтовая часть не особо важна
+
+## Запуск
+
+Skeleton проекта основан на Cookiecutter Django, поэтому запуск аналогичен тому, как советуют [в документации](https://cookiecutter-django.readthedocs.io/en/latest/developing-locally-docker.html):
+
+```shell
+docker-compose -f local.yml up --build
+```
+
+## Линтеры и тесты
+
+В GitHub Actions на каждый коммит в мастер и PR запускается [workflow](.github/workflows/ci.yml) с линтерами (с помощью `git pre commit`) и прогоном тестов.
+
+Используемые линтеры: `flake8`, `isort` и `black`.
+
+Тесты запускаются с помощью `pytest`.
